@@ -1,0 +1,17 @@
+.pre-info {
+  display: grid;
+  grid-template: 1fr / repeat(2, 1fr);
+  grid-gap: 1rem;
+  font-size: 1rem;
+}
+
+.pre-info input {
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+  height: 2.125rem;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+  color: #495057;
+  width: 100%;
+}
