@@ -140,7 +140,7 @@ class App extends React.Component {
 
   handleFechaDesembolso(e) {
     this.setState({
-      fechaDesembolso: new Date(e.target.value+'T00:00:00'),
+      fechaDesembolso: new Date(e.target.value + "T00:00:00"),
     });
   }
 

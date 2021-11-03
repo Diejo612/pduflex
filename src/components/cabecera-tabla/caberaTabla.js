@@ -22,9 +22,15 @@ class CabeceraTabla extends React.Component {
     }
     const fechasCuotas = getFechasCuotas(obj);
     const diferencias = getDiasDiferencia(obj.fechaDesembolso, fechasCuotas);
-    const tasaDiaria = getTasaDiaria(obj.tasa,obj.tipoTasa);
-    const vectores = getVectoresMensuales(obj,fechasCuotas)
-    const valorCuota = getValorCuota(diferencias, tasaDiaria, obj.prestamo, cantidadCuotas, vectores);
+    const tasaDiaria = getTasaDiaria(obj.tasa, obj.tipoTasa);
+    const vectores = getVectoresMensuales(obj, fechasCuotas);
+    const valorCuota = getValorCuota(
+      diferencias,
+      tasaDiaria,
+      obj.prestamo,
+      cantidadCuotas,
+      vectores
+    );
     return (
       <thead>
         <tr>

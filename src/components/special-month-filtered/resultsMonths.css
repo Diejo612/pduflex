@@ -1,22 +1,21 @@
 .special-months {
-    display: grid;
-    grid-template: 1fr / repeat(6, 1fr);
-    grid-gap: 1rem;
-    
+  display: grid;
+  grid-template: 1fr / repeat(6, 1fr);
+  grid-gap: 1rem;
 }
 
 .special-month label {
-    text-transform: capitalize;
-    font-size: 1rem;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 
 .special-month input {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
   border-radius: 0.25rem;
   border: 1px solid #ced4da;
   height: 2.125rem;
-    font-size: 1rem;
-    padding-left: 0.5rem;
-    color: #495057;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+  color: #495057;
+  width: 100%;
 }
-
