@@ -3,11 +3,24 @@ import "./result.css";
 import ResultsMonths from "../special-month-filtered/resultsMonths";
 import PreInfo from "../preInfo/preInfo";
 import TablaCuotas from "../tabla-cuotas/tablaCuotas";
-import downloadTable from "../../functions/downloadTable";
+import ReactHTMLTableToExcel from "react-html-table-to-excel"
 
 class Result extends React.Component {
+
   render() {
     if (this.props.showResult) {
+      let filename ='';
+      let fechahoy = new Date();
+
+      let year = fechahoy.getFullYear();
+      let month = fechahoy.getMonth();
+      let day = fechahoy.getDate();
+      let hours = fechahoy.getHours();
+      let minutes = fechahoy.getMinutes();
+      let sec = fechahoy.getSeconds();
+
+      filename = `Export ${year}-${month}-${day} ${hours}${minutes}${sec}`;
+
       if (
         !this.props.datosFormulario.prestamo ||
         !this.props.datosFormulario.plazo ||
@@ -32,15 +45,20 @@ class Result extends React.Component {
               formaPago={this.props.formaPago}
             />
             <h2>Información cuotas</h2>
-            <PreInfo datosFormulario={this.props.datosFormulario} />
+            <PreInfo datosFormulario={this.props.datosFormulario} valor={this.props.valor} total={this.props.total} />
             <h2>Tabla de Cuotas</h2>
-            <div className="boton excel" id="test" onClick={downloadTable}>
-              Descargar tabla
-            </div>
+            
+            <ReactHTMLTableToExcel 
+              table='table-to-export'
+              filename={filename}
+              sheet='Tabla Cuotas'
+              id='button-excel'
+              className='boton excel'
+              buttonText='Exportar tabla a Excel'
+            />
+
             <TablaCuotas
               datosFormulario={this.props.datosFormulario}
-              changeValor={this.props.changeValor}
-              changeTotal={this.props.changeTotal}
             />
           </section>
         );

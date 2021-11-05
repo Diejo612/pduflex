@@ -3,9 +3,8 @@ import getFechasCuotas from "../../functions/getFechasCuotas";
 import getTasaDiaria from "../../functions/getTasaDiaria";
 import getValorCuota from "../../functions/getValorCuota";
 import getVectoresMensuales from "../../functions/getVectoresMensuales";
-import changeValorInput from "../../functions/changeValor";
 
-const finalCuerpoTabla = (datos) => {
+const finalCuerpoTabla = (datos ) => {
   let rows = [];
 
   const fechasCuotas = getFechasCuotas(datos);
@@ -56,15 +55,11 @@ const finalCuerpoTabla = (datos) => {
     }
   }
 
-  changeValorInput("valorCuotaIndividual", valorCuota);
-
   let pagototal = 0;
 
   montoCuota.forEach((monto) => {
     pagototal += monto;
   });
-
-  changeValorInput("totalPagado", pagototal);
 
   for (let i = 0; i < fechasCuotasCadena.length; i++) {
     rows[i] = (
@@ -81,6 +76,20 @@ const finalCuerpoTabla = (datos) => {
       </tr>
     );
   }
+
+  rows.push(
+    <tr key={rows.length+1}>
+        <td></td>
+        <td><em>Monto por cuota</em></td>
+        <td>{valorCuota.toFixed(3)}</td>
+        <td></td>
+        <td><em>Total pagado</em></td>
+        <td>{pagototal.toFixed(3)}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+  )
 
   return rows;
 };

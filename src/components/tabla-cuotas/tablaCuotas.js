@@ -5,7 +5,7 @@ import CuerpoTabla from "../cuerpo-tabla/cuerpoTabla";
 class TablaCuotas extends React.Component {
   render() {
     return (
-      <table href="#" id="table-to-export">
+      <table id="table-to-export">
         <CabeceraTabla datos={this.props.datosFormulario} />
         <CuerpoTabla datos={this.props.datosFormulario} />
       </table>

@@ -2,6 +2,7 @@ import React from "react";
 import finalCuerpoTabla from "./finalCuerpoTabla";
 
 class CuerpoTabla extends React.Component {
+  
   render() {
     const datos = this.props.datos;
     let rows = finalCuerpoTabla(datos);
@@ -9,7 +10,7 @@ class CuerpoTabla extends React.Component {
     let dayD = fechaDesembolso.getDate();
     let monthD = fechaDesembolso.getMonth() + 1;
     let yearD = fechaDesembolso.getFullYear();
-    fechaDesembolso = `${yearD}-${monthD}-${dayD}`;
+    fechaDesembolso = `${yearD}-${monthD}-${dayD}`; 
 
     return (
       <tbody>
@@ -41,4 +42,24 @@ class CuerpoTabla extends React.Component {
   }
 }
 
+// ReactDOM.render(
+//   <div>
+//     <div className="importe de Cuota">
+//       <label htmlFor="valorCuotaIndividual">Importe por cuota</label>
+//       <input
+//         type="number"
+//         name="valorCuotaIndividual"
+//         id="valor"
+//         value={valorCuota}
+//         disabled
+//         readOnly
+//       />
+//     </div>
+    
+//     <div className="totalAPagar">
+//       <label htmlFor="totalPagado">Total Pagado</label>
+//       <input type="number" name="totalPagado" id="total" value={pagototal} disabled readOnly />
+//     </div>
+//   </div>, document.getElementById('info-cuotas')
+// );
 export default CuerpoTabla;

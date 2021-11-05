@@ -37,21 +37,6 @@ class PreInfo extends React.Component {
             readOnly
           />
         </div>
-
-        <div className="importe de Cuota">
-          <label htmlFor="valorCuotaIndividual">Importe por cuota</label>
-          <input
-            type="number"
-            name="valorCuotaIndividual"
-            id="valor"
-            readOnly
-          />
-        </div>
-
-        <div className="totalAPagar">
-          <label htmlFor="totalPagado">Total Pagado</label>
-          <input type="number" name="totalPagado" id="total" readOnly />
-        </div>
       </div>
     );
   }

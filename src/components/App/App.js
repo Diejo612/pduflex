@@ -51,7 +51,9 @@ class App extends React.Component {
         octubre: 1,
         noviembre: 1,
         diciembre: 1,
-      },
+      }, 
+      total:0,
+      valor:0,
     };
 
     this.handlePrestamo = this.handlePrestamo.bind(this);
@@ -146,7 +148,7 @@ class App extends React.Component {
 
   handleFechaCuota(e) {
     this.setState({
-      fechaCuota1: new Date(e.target.value),
+      fechaCuota1: new Date(e.target.value + "T00:00:00"),
     });
   }
 
@@ -391,6 +393,8 @@ class App extends React.Component {
           monthsQ={this.state.mesesEspecialesQ}
           formaPago={this.state.formaPago}
           datosFormulario={this.state}
+          valor={this.state.valor}
+          total={this.state.total}
         />
       </main>
     );
