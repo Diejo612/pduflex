@@ -379,6 +379,7 @@ class App extends React.Component {
             </div>
             <p className="campos-obligatorios">(*) Campos obligatorios</p>
             <div
+              href='#result'
               className="boton primario"
               id="calcular"
               onClick={this.showResults}

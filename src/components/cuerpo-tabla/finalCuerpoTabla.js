@@ -71,7 +71,7 @@ const finalCuerpoTabla = (datos ) => {
         <td>{capital[i].toFixed(3)}</td>
         <td>{montoCuota[i].toFixed(3)}</td>
         <td>{principalFinal[i].toFixed(3)}</td>
-        <td>{vectores[i]}</td>
+        <td></td>
         <td></td>
       </tr>
     );
@@ -79,11 +79,9 @@ const finalCuerpoTabla = (datos ) => {
 
   rows.push(
     <tr key={rows.length+1}>
-        <td></td>
-        <td><em>Monto por cuota</em></td>
+        <td colSpan='2'><b>Monto por cuota</b></td>
         <td>{valorCuota.toFixed(3)}</td>
-        <td></td>
-        <td><em>Total pagado</em></td>
+        <td colSpan='2'><b>Total pagado</b></td>
         <td>{pagototal.toFixed(3)}</td>
         <td></td>
         <td></td>
