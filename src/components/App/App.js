@@ -107,6 +107,7 @@ class App extends React.Component {
   handleFormaPago(e) {
     this.setState({
       formaPago: e.target.value,
+      diapago1: null
     });
   }
 
@@ -163,6 +164,7 @@ class App extends React.Component {
       });
     }
   }
+
 
   handleMesEspecial(e) {
     this.setState({

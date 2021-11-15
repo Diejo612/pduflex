@@ -1,6 +1,8 @@
 import React from "react";
 
 class SelectDay extends React.Component {
+
+  
   render() {
     switch (this.props.formaPago) {
       case "semanal":
