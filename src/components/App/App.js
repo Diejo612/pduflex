@@ -5,6 +5,8 @@ import SelectDay from "../select-day/select-day";
 import SpecialMonths from "../special-months/special-months";
 import Result from "../result/result";
 
+let errorPrestamo, errorPlazo, errorForma, errorTasa, errorDia, errorFecha;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -12,14 +14,14 @@ class App extends React.Component {
     this.state = {
       prestamo: "",
       plazo: "",
-      unidadPlazo: "",
+      unidadPlazo: "meses",
       gastoInicial: "",
       gastoCuota: "",
       formaPago: "",
       diapago1: "",
       diapago2: "",
       tasa: "",
-      tipoTasa: "",
+      tipoTasa: "nominal",
       fechaDesembolso: "",
       fechaCuota1: "",
       showMesesEspeciales: false,
@@ -74,16 +76,38 @@ class App extends React.Component {
     this.handleMesEspecialQ = this.handleMesEspecialQ.bind(this);
   }
 
+  changeStyleWrongInputs(e){
+    e.style.setProperty('--bd-pseudo','2px solid red');
+    e.style.setProperty('--bs-pseudo','0 0 5px red');
+  }
+
+  resetStyleInputs(e){
+    e.style.setProperty('--bd-normal','1px solid #ced4da');
+    e.style.setProperty('--bs-normal','none');
+    e.style.setProperty('--bd-pseudo','1px solid #30567e');
+    e.style.setProperty('--bs-pseudo','0 0 5px #3786da');
+  }
+
   handlePrestamo(e) {
     this.setState({
       prestamo: parseFloat(e.target.value),
     });
+
+    if (this.state.prestamo) {
+      this.resetStyleInputs(e.target);
+      errorPrestamo = '';
+    }
   }
 
   handlePlazo(e) {
     this.setState({
       plazo: parseFloat(e.target.value),
     });
+
+    if (this.state.plazo) {
+      this.resetStyleInputs(e.target);
+      errorPlazo = '';
+    }
   }
 
   handleUnidadPlazo(e) {
@@ -109,6 +133,11 @@ class App extends React.Component {
       formaPago: e.target.value,
       diapago1: null
     });
+
+    if (this.state.formaPago) {
+      this.resetStyleInputs(e.target);
+      errorForma = '';
+    }
   }
 
   handleDiaPago1(e) {
@@ -120,6 +149,11 @@ class App extends React.Component {
       this.setState({
         diapago1: parseInt(e.target.value),
       });
+    }
+
+    if (this.state.diapago1) {
+      this.resetStyleInputs(e.target);
+      errorDia = '';
     }
   }
 
@@ -133,6 +167,11 @@ class App extends React.Component {
     this.setState({
       tasa: parseFloat(e.target.value),
     });
+
+    if (this.state.tasa) {
+      this.resetStyleInputs(e.target);
+      errorTasa = '';
+    }
   }
 
   handleTipoTasa(e) {
@@ -145,6 +184,11 @@ class App extends React.Component {
     this.setState({
       fechaDesembolso: new Date(e.target.value + "T00:00:00"),
     });
+
+    if (this.state.fechaDesembolso) {
+      this.resetStyleInputs(e.target);
+      errorFecha = '';
+    }
   }
 
   handleFechaCuota(e) {
@@ -208,6 +252,70 @@ class App extends React.Component {
     this.setState({
       showResult: true,
     });
+
+    const inpPrestamo = document.getElementById('prestamo');
+    const inpPlazo = document.getElementById('plazo');
+    const inpFormaPago = document.getElementById('formapago');
+    const inpDiaPago = document.getElementById('dia-pago');
+    const inpTasa = document.getElementById('tasaanual');
+    const inpFecDes = document.getElementById('fecha-desembolso');
+
+    if (!this.state.prestamo) {
+      inpPrestamo.style.setProperty('--bd-normal','2px solid red');
+      inpPrestamo.style.setProperty('--bs-normal','0 0 5px red');
+      this.changeStyleWrongInputs(inpPrestamo);
+      errorPrestamo = (
+        <div className='error'>
+          Coloque una cantidad válida para este campo.
+        </div>
+      );
+    } else if (!this.state.plazo) {
+      inpPlazo.style.setProperty('--bd-normal','2px solid red');
+      inpPlazo.style.setProperty('--bs-normal','0 0 5px red');
+      this.changeStyleWrongInputs(inpPlazo);
+      errorPlazo = (
+        <div className='error'>
+          Coloque una cantidad válida para este campo.
+        </div>
+      );
+    } else if (!this.state.formaPago) {
+      inpFormaPago.style.setProperty('--bd-normal','2px solid red');
+      inpFormaPago.style.setProperty('--bs-normal','0 0 5px red');
+      this.changeStyleWrongInputs(inpFormaPago);
+      errorForma = (
+        <div className='error'>
+          Seleccione un valor para este campo.
+        </div>
+      );
+    } else if (!this.state.diapago1 ) {
+      inpDiaPago.style.setProperty('--bd-normal','2px solid red');
+      inpDiaPago.style.setProperty('--bs-normal','0 0 5px red');
+      this.changeStyleWrongInputs(inpDiaPago);
+      errorDia = (
+        <div className='error'>
+          Coloque un día válido o seleccione un valor para este campo.
+        </div>
+      );
+    } else if (!this.state.tasa) {
+      inpTasa.style.setProperty('--bd-normal','2px solid red');
+      inpTasa.style.setProperty('--bs-normal','0 0 5px red');
+      this.changeStyleWrongInputs(inpTasa);
+      errorTasa = (
+        <div className='error'>
+          Coloque una cantidad válida.
+        </div>
+      );
+    } else if (!this.state.fechaDesembolso) {
+      inpFecDes.style.setProperty('--bd-normal','2px solid red');
+      inpFecDes.style.setProperty('--bs-normal','0 0 5px red');
+      this.changeStyleWrongInputs(inpFecDes);
+      errorFecha = (
+        <div className='error'>
+          Coloque una cantidad válida.
+        </div>
+      );
+    }
+
   }
 
   render() {
@@ -229,6 +337,7 @@ class App extends React.Component {
                 onChange={this.handlePrestamo}
                 required
               />
+              {errorPrestamo}
             </div>
             <div className="plazo">
               <label htmlFor="plazo">Plazo*</label>
@@ -242,6 +351,7 @@ class App extends React.Component {
                 onChange={this.handlePlazo}
                 required
               />
+              {errorPlazo}
               <div className="radiolabels">
                 <label htmlFor="unidad">Unidad: </label>
                 <input
@@ -249,6 +359,7 @@ class App extends React.Component {
                   name="unidad"
                   id="meses"
                   value="meses"
+                  defaultChecked
                   onClick={this.handleUnidadPlazo}
                 />
                 <label htmlFor="meses">Meses</label>
@@ -302,6 +413,7 @@ class App extends React.Component {
                 <option value="bimestral">Bimestral</option>
                 <option value="trimestral">Trimestral</option>
               </select>
+              {errorForma}
             </div>
 
             <SelectDay
@@ -322,6 +434,7 @@ class App extends React.Component {
                 onChange={this.handleTasa}
                 required
               />
+              {errorTasa}
               <div className="radiolabels">
                 <label htmlFor="unidad-tasa">Tipo:</label>
                 <input
@@ -329,6 +442,7 @@ class App extends React.Component {
                   name="unidad-tasa"
                   id="nominal"
                   value="nominal"
+                  defaultChecked
                   onClick={this.handleTipoTasa}
                 />
                 <label htmlFor="nominal">Nominal</label>
@@ -351,6 +465,7 @@ class App extends React.Component {
                 defaultValue={this.state.fechaDesembolso}
                 onChange={this.handleFechaDesembolso}
               />
+              {errorFecha}
             </div>
             <div className="fecha-cuota-1">
               <label htmlFor="fecha-cuota-1">Fecha de 1° cuota</label>
@@ -377,17 +492,18 @@ class App extends React.Component {
                 onMesEspecial={this.handleMesEspecial}
                 onMesEspecialQ={this.handleMesEspecialQ}
                 formaPago={this.state.formaPago}
+                error={errorDia}
               />
             </div>
             <p className="campos-obligatorios">(*) Campos obligatorios</p>
-            <div
+            <a
               href='#result'
               className="boton primario"
               id="calcular"
               onClick={this.showResults}
             >
               Calcular Cuotas
-            </div>
+            </a>
           </form>
         </section>
         <Result

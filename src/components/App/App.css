@@ -5,6 +5,10 @@ html {
   font-family: "Open Sans", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 header {
   width: 100%;
   background-color: #eee;
@@ -37,11 +41,30 @@ form input,
 form select {
   margin-top: 0.5rem;
   border-radius: 0.25rem;
-  border: 1px solid #ced4da;
+  border: var(--bd-normal);
+  box-shadow: var(--bs-normal);
   height: 2.125rem;
   font-size: 1rem;
   padding-left: 0.5rem;
   color: #495057;
+  --bs-pseudo: 0 0 5px #3786da;
+  --bd-pseudo: 1px solid #30567e;
+  --bd-normal: 1px solid #ced4da;
+  --bs-normal: none;
+}
+
+form input:hover, form select:hover {
+  box-shadow: var(--bs-pseudo);
+}
+
+form input:focus, form select:focus {
+  outline: none;
+  box-shadow: var(--bs-pseudo);
+  border: var(--bd-pseudo);
+}
+
+.error {
+  color: red;
 }
 
 form select {
@@ -55,10 +78,11 @@ form select {
     linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
 }
 
-form input[type="radio"] {
+form input[type="radio"],form input[type="radio"]:focus,form input[type="radio"]:hover {
   margin: 0 0.5rem;
   vertical-align: bottom;
   height: 1.4rem;
+  box-shadow: none;
 }
 
 .prestamo {

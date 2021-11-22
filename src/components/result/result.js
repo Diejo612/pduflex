@@ -31,13 +31,13 @@ class Result extends React.Component {
         !this.props.datosFormulario.fechaDesembolso
       ) {
         return (
-          <section className="result">
+          <section className="result" id='result'>
             Por favor, complete los campos necesarios
           </section>
         );
       } else {
         return (
-          <section className="result">
+          <section className="result" id='result'>
             <h2>Meses Especiales</h2>
             <ResultsMonths
               months={this.props.months}

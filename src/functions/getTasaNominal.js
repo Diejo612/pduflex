@@ -4,3 +4,6 @@ const getTasaNominal = (tasa) => {
 };
 
 export default getTasaNominal;
+
+
+// comentario

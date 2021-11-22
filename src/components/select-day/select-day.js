@@ -25,6 +25,7 @@ class SelectDay extends React.Component {
               <option value="sabado">Sábado</option>
               <option value="domingo">Domingo</option>
             </select>
+            {this.props.error}
           </div>
         );
 
@@ -58,6 +59,7 @@ class SelectDay extends React.Component {
                 required
               />
             </div>
+            {this.props.error}
           </div>
         );
 
@@ -76,6 +78,7 @@ class SelectDay extends React.Component {
               onChange={this.props.onDiaPago1}
               required
             />
+            {this.props.error}
           </div>
         );
 
@@ -94,6 +97,7 @@ class SelectDay extends React.Component {
               onChange={this.props.onDiaPago1}
               required
             />
+            {this.props.error}
           </div>
         );
 
@@ -112,6 +116,7 @@ class SelectDay extends React.Component {
               onChange={this.props.onDiaPago1}
               required
             />
+            {this.props.error}
           </div>
         );
 
