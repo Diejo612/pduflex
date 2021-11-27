@@ -3,6 +3,7 @@ import getFechasCuotas from "../../functions/getFechasCuotas";
 import getTasaDiaria from "../../functions/getTasaDiaria";
 import getValorCuota from "../../functions/getValorCuota";
 import getVectoresMensuales from "../../functions/getVectoresMensuales";
+import getVectoresNormales from "../../functions/getVectoresNormales";
 
 const finalCuerpoTabla = (datos ) => {
   let rows = [];
@@ -31,6 +32,14 @@ const finalCuerpoTabla = (datos ) => {
     fechasCuotas.length,
     vectores
   );
+  
+  const vectoresNormales = getVectoresNormales(fechasCuotas.length);
+  const valorCuotaNormal = getValorCuota( diferencias,
+    tasaDiaria,
+    prestamo,
+    fechasCuotas.length,
+    vectoresNormales);
+
   let montoCuota = [];
   vectores.forEach((vector) => {
     montoCuota.push(valorCuota * vector);
@@ -62,6 +71,7 @@ const finalCuerpoTabla = (datos ) => {
   });
 
   for (let i = 0; i < fechasCuotasCadena.length; i++) {
+    let colorBg = (montoCuota[i]- valorCuotaNormal) < 0 ? 'red-cell' : 'normal-cell';
     rows[i] = (
       <tr key={i + 1}>
         <td>{i + 1}</td>
@@ -71,6 +81,8 @@ const finalCuerpoTabla = (datos ) => {
         <td>{capital[i].toFixed(3)}</td>
         <td>{montoCuota[i].toFixed(3)}</td>
         <td>{principalFinal[i].toFixed(3)}</td>
+        <td>{valorCuotaNormal.toFixed(3)}</td>
+        <td className={colorBg}>{(montoCuota[i]- valorCuotaNormal).toFixed(3)}</td>
         <td></td>
         <td></td>
       </tr>
@@ -83,6 +95,8 @@ const finalCuerpoTabla = (datos ) => {
         <td>{valorCuota.toFixed(3)}</td>
         <td colSpan='2'><b>Total pagado</b></td>
         <td>{pagototal.toFixed(3)}</td>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

@@ -29,6 +29,11 @@ table tbody tr:nth-child(odd) {
   background-color: #faf9f9;
 }
 
+.red-cell {
+  background-color: rgb(248, 193, 193);
+  color: red;
+}
+
 h2 {
   margin-bottom: 0.5rem;
 }

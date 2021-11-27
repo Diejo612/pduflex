@@ -23,13 +23,17 @@ class CuerpoTabla extends React.Component {
           <th>Total</th>
           <th>Principal al final</th>
           <th>Normal</th>
-          <th>%Normal</th>
+          <th>Ahorro</th>
+          <th></th>
+          <th></th>
         </tr>
         <tr>
           <td>0</td>
           <td>{fechaDesembolso}</td>
           <td></td>
           <td></td>
+          <td></td>
+          <td>{datos.prestamo.toFixed(3)}</td>
           <td></td>
           <td></td>
           <td></td>
@@ -42,24 +46,4 @@ class CuerpoTabla extends React.Component {
   }
 }
 
-// ReactDOM.render(
-//   <div>
-//     <div className="importe de Cuota">
-//       <label htmlFor="valorCuotaIndividual">Importe por cuota</label>
-//       <input
-//         type="number"
-//         name="valorCuotaIndividual"
-//         id="valor"
-//         value={valorCuota}
-//         disabled
-//         readOnly
-//       />
-//     </div>
-    
-//     <div className="totalAPagar">
-//       <label htmlFor="totalPagado">Total Pagado</label>
-//       <input type="number" name="totalPagado" id="total" value={pagototal} disabled readOnly />
-//     </div>
-//   </div>, document.getElementById('info-cuotas')
-// );
 export default CuerpoTabla;

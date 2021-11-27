@@ -43,6 +43,9 @@ class CabeceraTabla extends React.Component {
           <th>Día pago</th>
           <th>Tasa Diaria Nominal</th>
           <th>Tasa Diaria Efectiva</th>
+          <th>Gasto inicial</th>
+          <th>Gasto Cuota</th>
+          <th>Tipo de gasto</th>
         </tr>
         <tr>
           <td>{obj.prestamo}</td>
@@ -54,6 +57,9 @@ class CabeceraTabla extends React.Component {
           <td>{diapago}</td>
           <td>{getTasaNominal(obj.tasa).toFixed(5)}</td>
           <td>{getTasaEfectiva(obj.tasa).toFixed(5)}</td>
+          <td>{obj.gastoInicial}</td>
+          <td>{obj.gastoCuota}</td>
+          <td></td>
         </tr>
       </thead>
     );
